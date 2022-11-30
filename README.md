@@ -1,5 +1,5 @@
 # 🎄 Advent of Code 2022 🎄
-[![GitHub Super-Linter](https://github.com/orfeasa/advent-of-code-2022/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/91cca2df2061459e8d63abd5cdcb7b37)](https://www.codacy.com/gh/orfeasa/advent-of-code-2022/dashboard)
 
 ![AoC2022 logo](https://raw.githubusercontent.com/orfeasa/advent-of-code-2022/master/header.png)
 ## Summary
@@ -15,7 +15,7 @@ To run the code of a specific day from the root directory run the following, rep
 python3 day_xx/main.py
 ```
 
-You may want to replace `python3` with `python3.X` if the command above doesn't work.
+You may want to replace `python3` with `python3.10` if the command above doesn't work.
 
 To run the code of all days run the script:
 
