@@ -1,6 +1,5 @@
 # 🎄 Advent of Code 2022 🎄
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/91cca2df2061459e8d63abd5cdcb7b37)](https://www.codacy.com/gh/orfeasa/advent-of-code-2022/dashboard)
 
 ![AoC2022 logo](https://raw.githubusercontent.com/orfeasa/advent-of-code-2022/master/header.png)
 
