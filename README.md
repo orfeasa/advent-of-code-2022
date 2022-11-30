@@ -1,7 +1,7 @@
 # 🎄 Advent of Code 2022 🎄
+[![GitHub Super-Linter](https://github.com/orfeasa/advent-of-code-2022/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
 ![AoC2022 logo](https://raw.githubusercontent.com/orfeasa/advent-of-code-2022/master/header.png)
-
 ## Summary
 
 [Advent of Code](http://adventofcode.com/) is an annual Advent calendar of programming puzzles.
