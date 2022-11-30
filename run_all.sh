@@ -6,7 +6,7 @@ do
     if test -f "$PYFILE";
     then
         echo "#### Day $i ####"
-        python3.9 $PYFILE
+        python3.10 $PYFILE
     fi
     printf "\n"
 done
