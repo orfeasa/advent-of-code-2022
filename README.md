@@ -73,8 +73,8 @@ To learn more about authentication cookies check [this Wikipedia article](https:
 
 To get your cookie, go to the [Advent of Code site](https://adventofcode.com/), and while logged in.
 
-- For Firefox: right and select "Inspect Element" and in the "Storage" tab select "Cookies" → "https://adventofcode.com"
-- For Chrome: right and select "Inspect" and in the "Application" tab select "Cookies" → "https://adventofcode.com"
+  - For Firefox: right and select "Inspect Element" and in the "Storage" tab select "Cookies" → "https://adventofcode.com"
+  - For Chrome: right and select "Inspect" and in the "Application" tab select "Cookies" → "https://adventofcode.com"
 
 Then find the row with "session" as name, copy the value and paste it in your newly created `cookie.txt` file
 
