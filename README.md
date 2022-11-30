@@ -1,4 +1,5 @@
 # 🎄 Advent of Code 2022 🎄
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/95af2afbba8e4e688c01ee75f5eeb0b6)](https://app.codacy.com/gh/orfeasa/advent-of-code-2022?utm_source=github.com&utm_medium=referral&utm_content=orfeasa/advent-of-code-2022&utm_campaign=Badge_Grade_Settings)
 [![GitHub Super-Linter](https://github.com/orfeasa/advent-of-code-2022/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
 ![AoC2022 logo](https://raw.githubusercontent.com/orfeasa/advent-of-code-2022/master/header.png)
