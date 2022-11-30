@@ -1,7 +1,9 @@
 # 🎄 Advent of Code 2022 🎄
+
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/91cca2df2061459e8d63abd5cdcb7b37)](https://www.codacy.com/gh/orfeasa/advent-of-code-2022/dashboard)
 
 ![AoC2022 logo](https://raw.githubusercontent.com/orfeasa/advent-of-code-2022/master/header.png)
+
 ## Summary
 
 [Advent of Code](http://adventofcode.com/) is an annual Advent calendar of programming puzzles.
@@ -27,33 +29,33 @@ Make sure you have given permission to execute (`chmod +x run_all.sh`).
 
 ## Overview
 
-| Day                                        | Name                    | Stars |
-| ------------------------------------------ | ----------------------- | ----- |
-| [01](https://adventofcode.com/2022/day/1)  | |     |
-| [02](https://adventofcode.com/2022/day/2)  | |     |
-| [03](https://adventofcode.com/2022/day/3)  | |     |
-| [04](https://adventofcode.com/2022/day/4)  | |     |
-| [05](https://adventofcode.com/2022/day/5)  | |     |
-| [06](https://adventofcode.com/2022/day/6)  | |     |
-| [07](https://adventofcode.com/2022/day/7)  | |     |
-| [08](https://adventofcode.com/2022/day/8)  | |     |
-| [09](https://adventofcode.com/2022/day/9)  | |     |
-| [10](https://adventofcode.com/2022/day/10) | |     |
-| [11](https://adventofcode.com/2022/day/11) | |     |
-| [12](https://adventofcode.com/2022/day/12) | |     |
-| [13](https://adventofcode.com/2022/day/13) | |     |
-| [14](https://adventofcode.com/2022/day/14) | |     |
-| [15](https://adventofcode.com/2022/day/15) | |     |
-| [16](https://adventofcode.com/2022/day/16) | |     |
-| [17](https://adventofcode.com/2022/day/17) | |     |
-| [18](https://adventofcode.com/2022/day/18) | |     |
-| [19](https://adventofcode.com/2022/day/19) | |     |
-| [20](https://adventofcode.com/2022/day/20) | |     |
-| [21](https://adventofcode.com/2022/day/21) | |     |
-| [22](https://adventofcode.com/2022/day/22) | |     |
-| [23](https://adventofcode.com/2022/day/23) | |     |
-| [24](https://adventofcode.com/2022/day/24) | |     |
-| [25](https://adventofcode.com/2022/day/25) | |     |
+| Day                                        | Name | Stars |
+| ------------------------------------------ | ---- | ----- |
+| [01](https://adventofcode.com/2022/day/1)  |      |       |
+| [02](https://adventofcode.com/2022/day/2)  |      |       |
+| [03](https://adventofcode.com/2022/day/3)  |      |       |
+| [04](https://adventofcode.com/2022/day/4)  |      |       |
+| [05](https://adventofcode.com/2022/day/5)  |      |       |
+| [06](https://adventofcode.com/2022/day/6)  |      |       |
+| [07](https://adventofcode.com/2022/day/7)  |      |       |
+| [08](https://adventofcode.com/2022/day/8)  |      |       |
+| [09](https://adventofcode.com/2022/day/9)  |      |       |
+| [10](https://adventofcode.com/2022/day/10) |      |       |
+| [11](https://adventofcode.com/2022/day/11) |      |       |
+| [12](https://adventofcode.com/2022/day/12) |      |       |
+| [13](https://adventofcode.com/2022/day/13) |      |       |
+| [14](https://adventofcode.com/2022/day/14) |      |       |
+| [15](https://adventofcode.com/2022/day/15) |      |       |
+| [16](https://adventofcode.com/2022/day/16) |      |       |
+| [17](https://adventofcode.com/2022/day/17) |      |       |
+| [18](https://adventofcode.com/2022/day/18) |      |       |
+| [19](https://adventofcode.com/2022/day/19) |      |       |
+| [20](https://adventofcode.com/2022/day/20) |      |       |
+| [21](https://adventofcode.com/2022/day/21) |      |       |
+| [22](https://adventofcode.com/2022/day/22) |      |       |
+| [23](https://adventofcode.com/2022/day/23) |      |       |
+| [24](https://adventofcode.com/2022/day/24) |      |       |
+| [25](https://adventofcode.com/2022/day/25) |      |       |
 
 ## New Day
 
@@ -73,8 +75,8 @@ To learn more about authentication cookies check [this Wikipedia article](https:
 
 To get your cookie, go to the [Advent of Code site](https://adventofcode.com/), and while logged in.
 
-  - For Firefox: right and select "Inspect Element" and in the "Storage" tab select "Cookies" → "https://adventofcode.com"
-  - For Chrome: right and select "Inspect" and in the "Application" tab select "Cookies" → "https://adventofcode.com"
+- For Firefox: right and select "Inspect Element" and in the "Storage" tab select "Cookies" → "https://adventofcode.com"
+- For Chrome: right and select "Inspect" and in the "Application" tab select "Cookies" → "https://adventofcode.com"
 
 Then find the row with "session" as name, copy the value and paste it in your newly created `cookie.txt` file
 
