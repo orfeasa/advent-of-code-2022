@@ -71,7 +71,7 @@ like this `53616c7465645f5fbd2d445187c5dc5463efb7020021c273c3d604b5946f9e87e2dc3
 
 To learn more about authentication cookies check [this Wikipedia article](https://en.wikipedia.org/wiki/HTTP_cookie)
 
-To get your cookie, go to the [Advent of Code website](https://adventofcode.com/), and while logged in.
+To get your cookie, go to the [Advent of Code site](https://adventofcode.com/), and while logged in.
 
 - For Firefox: right and select "Inspect Element" and in the "Storage" tab select "Cookies" → "https://adventofcode.com"
 - For Chrome: right and select "Inspect" and in the "Application" tab select "Cookies" → "https://adventofcode.com"
