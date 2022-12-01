@@ -7,6 +7,6 @@ do
     then
         echo "#### Day $i ####"
         python3.10 "$PYFILE"
+        printf "\n"
     fi
-    printf "\n"
 done
