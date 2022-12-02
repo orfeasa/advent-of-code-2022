@@ -76,17 +76,14 @@ def part_two(filename: str) -> int:
     for move, outcome in moves:
         opp_move = Move.to_move(move)
         match outcome:
-            case "X":
-                # lose
-                total_score += opp_move.beats().move_score()
-            case "Y":
-                # draw
-                total_score += 3
-                total_score += opp_move.move_score()
-            case "Z":
-                # win
-                total_score += 6
-                total_score += opp_move.loses_by().move_score()
+            case "X": # lose
+                my_move = opp_move.beats()
+            case "Y": # draw
+                my_move = opp_move
+            case "Z": # win
+                my_move = opp_move.loses_by()
+        total_score += my_move.move_score()
+        total_score += calc_outcome_score(opp_move, my_move)
     return total_score
 
 
