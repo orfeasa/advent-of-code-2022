@@ -24,20 +24,28 @@ class Move(Enum):
             case Move.SCISSORS:
                 return Move.ROCK
 
+    def move_score(self) -> int:
+        match self:
+            case Move.ROCK:
+                return 1
+            case Move.PAPER:
+                return 2
+            case Move.SCISSORS:
+                return 3
 
     @classmethod
     def to_move(cls, move: str):
         match move:
             case "A" | "X":
-                return cls.ROCK
+                return Move.ROCK
             case "B" | "Y":
-                return cls.PAPER
+                return Move.PAPER
             case "C" | "Z":
-                return cls.SCISSORS
+                return Move.SCISSORS
 
 
-def calc_outcome_score(opp_move, your_move: Move) -> int:
-    match (opp_move, your_move):
+def calc_outcome_score(opp_move, my_move: Move) -> int:
+    match (opp_move, my_move):
         case (move1, move2) if move1 == move2:
             return 3
         case (move1, move2) if move2 == move1.beats():
@@ -51,22 +59,35 @@ def part_one(filename: str) -> int:
     with open(filename) as f:
         moves = [tuple(line.split()) for line in f.readlines()]
 
-    move_to_score = {
-        "X": 1,
-        "Y": 2,
-        "Z": 3,
-    }
     total_score = 0
     for move in moves:
-        total_score += move_to_score[move[1]]
-        total_score += calc_outcome_score(Move.to_move(move[0]), Move.to_move(move[1]))
+        opp_move, my_move = Move.to_move(move[0]), Move.to_move(move[1])
+        total_score += my_move.move_score()
+        total_score += calc_outcome_score(opp_move, my_move)
 
     return total_score
 
 
 
 def part_two(filename: str) -> int:
-    return 0
+    with open(filename) as f:
+        moves = [tuple(line.split()) for line in f.readlines()]
+    total_score = 0
+    for move, outcome in moves:
+        opp_move = Move.to_move(move)
+        match outcome:
+            case "X":
+                # lose
+                total_score += opp_move.beats().move_score()
+            case "Y":
+                # draw
+                total_score += 3
+                total_score += opp_move.move_score()
+            case "Z":
+                # win
+                total_score += 6
+                total_score += opp_move.loses_by().move_score()
+    return total_score
 
 
 if __name__ == "__main__":
