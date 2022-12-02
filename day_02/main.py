@@ -32,6 +32,8 @@ class Move(Enum):
                 return 2
             case Move.SCISSORS:
                 return 3
+            case _:
+                raise ValueError("Invalid move")
 
     @classmethod
     def to_move(cls, move: str):
@@ -42,6 +44,9 @@ class Move(Enum):
                 return Move.PAPER
             case "C" | "Z":
                 return Move.SCISSORS
+            case _:
+                raise ValueError("Invalid move")
+
 
 
 def calc_outcome_score(opp_move, my_move: Move) -> int:
@@ -68,7 +73,6 @@ def part_one(filename: str) -> int:
     return total_score
 
 
-
 def part_two(filename: str) -> int:
     with open(filename) as f:
         moves = [tuple(line.split()) for line in f.readlines()]
@@ -76,11 +80,11 @@ def part_two(filename: str) -> int:
     for move, outcome in moves:
         opp_move = Move.to_move(move)
         match outcome:
-            case "X": # lose
+            case "X":  # lose
                 my_move = opp_move.beats()
-            case "Y": # draw
+            case "Y":  # draw
                 my_move = opp_move
-            case "Z": # win
+            case "Z":  # win
                 my_move = opp_move.loses_by()
         total_score += my_move.move_score()
         total_score += calc_outcome_score(opp_move, my_move)
