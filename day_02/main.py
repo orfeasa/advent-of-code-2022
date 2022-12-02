@@ -48,7 +48,6 @@ class Move(Enum):
                 raise ValueError("Invalid move")
 
 
-
 def calc_outcome_score(opp_move, my_move: Move) -> int:
     match (opp_move, my_move):
         case (move1, move2) if move1 == move2:
@@ -59,6 +58,7 @@ def calc_outcome_score(opp_move, my_move: Move) -> int:
             return 6
         case _:
             raise ValueError("Invalid moves")
+
 
 def part_one(filename: str) -> int:
     with open(filename) as f:
