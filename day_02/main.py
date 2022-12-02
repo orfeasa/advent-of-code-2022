@@ -1,10 +1,10 @@
-from enum import Enum
+from enum import Enum, auto
 
 
 class Move(Enum):
-    ROCK = 1
-    PAPER = 2
-    SCISSORS = 3
+    ROCK = auto()
+    PAPER = auto()
+    SCISSORS = auto()
 
     def beats(self):
         match self:
