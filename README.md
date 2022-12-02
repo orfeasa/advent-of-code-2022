@@ -1,6 +1,5 @@
 # 🎄 Advent of Code 2022 🎄
 
-
 ![AoC2022 logo](https://raw.githubusercontent.com/orfeasa/advent-of-code-2022/master/header.png)
 
 ## Summary
@@ -28,33 +27,33 @@ Make sure you have given permission to execute (`chmod +x run_all.sh`).
 
 ## Overview
 
-| Day | Name                                                    | Stars |
-| --- | ------------------------------------------------------- | ----- |
-| 01  | [Calorie Counting](https://adventofcode.com/2022/day/1) | ⭐⭐    |
-| 02  |                                                         |       |
-| 03  |                                                         |       |
-| 04  |                                                         |       |
-| 05  |                                                         |       |
-| 06  |                                                         |       |
-| 07  |                                                         |       |
-| 08  |                                                         |       |
-| 09  |                                                         |       |
-| 10  |                                                         |       |
-| 11  |                                                         |       |
-| 12  |                                                         |       |
-| 13  |                                                         |       |
-| 14  |                                                         |       |
-| 15  |                                                         |       |
-| 16  |                                                         |       |
-| 17  |                                                         |       |
-| 18  |                                                         |       |
-| 19  |                                                         |       |
-| 20  |                                                         |       |
-| 21  |                                                         |       |
-| 22  |                                                         |       |
-| 23  |                                                         |       |
-| 24  |                                                         |       |
-| 25  |                                                         |       |
+| Day | Name                                                       | Stars |
+| --- | ---------------------------------------------------------- | ----- |
+| 01  | [Calorie Counting](https://adventofcode.com/2022/day/1)    | ⭐⭐  |
+| 02  | [Rock Paper Scissors](https://adventofcode.com/2022/day/2) | ⭐⭐  |
+| 03  |                                                            |       |
+| 04  |                                                            |       |
+| 05  |                                                            |       |
+| 06  |                                                            |       |
+| 07  |                                                            |       |
+| 08  |                                                            |       |
+| 09  |                                                            |       |
+| 10  |                                                            |       |
+| 11  |                                                            |       |
+| 12  |                                                            |       |
+| 13  |                                                            |       |
+| 14  |                                                            |       |
+| 15  |                                                            |       |
+| 16  |                                                            |       |
+| 17  |                                                            |       |
+| 18  |                                                            |       |
+| 19  |                                                            |       |
+| 20  |                                                            |       |
+| 21  |                                                            |       |
+| 22  |                                                            |       |
+| 23  |                                                            |       |
+| 24  |                                                            |       |
+| 25  |                                                            |       |
 
 ## New Day
 
