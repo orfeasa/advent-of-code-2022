@@ -47,13 +47,12 @@ class Move(Enum):
 
 
 def calc_outcome_score(opp_move, my_move: Move) -> int:
-    match (opp_move, my_move):
-        case (move1, move2) if move1 == move2:
-            return 3
-        case (move1, move2) if move2 == move1.loses_by():
-            return 6
-        case (move1, move2) if move2 == move1.beats():
-            return 0
+    if opp_move == my_move:  # draw
+        return 3
+    if my_move == opp_move.loses_by():  # win
+        return 6
+    if my_move == opp_move.beats():  # lose
+        return 0
     raise ValueError("Invalid moves")
 
 
