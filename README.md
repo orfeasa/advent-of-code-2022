@@ -9,7 +9,7 @@ This year I am doing it in Python.
 
 ## Running the code
 
-To run the code of a specific day from the root directory run the following, replacing `xx` with the day number, `01` - `25`. Make sure you use Python 3.9+.
+To run the code of a specific day from the root directory run the following, replacing `xx` with the day number, `01` - `25`. Make sure you use Python 3.10+.
 
 ```sh
 python3 day_xx/main.py
