@@ -14,7 +14,7 @@ def part_two(filename: str) -> int:
 
 
 def process_calories(filename: str) -> list[list[int]]:
-    with open(filename) as f:
+    with open(filename, encoding="utf-8") as f:
         elves = f.read().split("\n\n")
     return [list(map(int, elf.strip().split("\n"))) for elf in elves]
 

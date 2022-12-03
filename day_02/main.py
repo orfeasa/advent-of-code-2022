@@ -61,7 +61,7 @@ def calc_outcome_score(opp_move, my_move: Move) -> int:
 
 
 def part_one(filename: str) -> int:
-    with open(filename) as f:
+    with open(filename, encoding="utf-8") as f:
         moves = [tuple(line.split()) for line in f.readlines()]
 
     total_score = 0
@@ -74,7 +74,7 @@ def part_one(filename: str) -> int:
 
 
 def part_two(filename: str) -> int:
-    with open(filename) as f:
+    with open(filename, encoding="utf-8") as f:
         moves = [tuple(line.split()) for line in f.readlines()]
     total_score = 0
     for move, outcome in moves:

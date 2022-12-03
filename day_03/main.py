@@ -5,7 +5,7 @@ def get_priority(letter: str) -> int:
 
 
 def part_one(filename: str) -> int:
-    with open(filename) as f:
+    with open(filename, encoding="utf-8") as f:
         rugsacks = list(map(lambda line: line.strip(), f.readlines()))
 
     priorities_sum = 0
@@ -16,7 +16,7 @@ def part_one(filename: str) -> int:
 
 
 def part_two(filename: str) -> int:
-    with open(filename) as f:
+    with open(filename, encoding="utf-8") as f:
         rugsacks = list(map(lambda line: line.strip(), f.readlines()))
     priorities_sum = 0
     for i in range(0, len(rugsacks), 3):
