@@ -1,7 +1,5 @@
-def get_priority(letter: str) -> int:
-    if letter.islower():
-        return ord(letter) - 96
-    return ord(letter) - 38
+def get_priority(x: str) -> int:
+    return ord(x) - ord("a") + 1 if x.islower() else ord(x) - ord("A") + 27
 
 
 def part_one(filename: str) -> int:
