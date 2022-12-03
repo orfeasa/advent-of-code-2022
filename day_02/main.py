@@ -32,8 +32,7 @@ class Move(Enum):
                 return 2
             case Move.SCISSORS:
                 return 3
-            case _:
-                raise ValueError("Invalid move")
+        raise ValueError("Invalid move")
 
     @classmethod
     def to_move(cls, move: str):
@@ -44,20 +43,18 @@ class Move(Enum):
                 return Move.PAPER
             case "C" | "Z":
                 return Move.SCISSORS
-            case _:
-                raise ValueError("Invalid move")
+        raise ValueError("Invalid move")
 
 
 def calc_outcome_score(opp_move, my_move: Move) -> int:
     match (opp_move, my_move):
         case (move1, move2) if move1 == move2:
             return 3
-        case (move1, move2) if move2 == move1.beats():
-            return 0
         case (move1, move2) if move2 == move1.loses_by():
             return 6
-        case _:
-            raise ValueError("Invalid moves")
+        case (move1, move2) if move2 == move1.beats():
+            return 0
+    raise ValueError("Invalid moves")
 
 
 def part_one(filename: str) -> int:
