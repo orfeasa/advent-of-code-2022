@@ -4,21 +4,23 @@ def get_priority(x: str) -> int:
 
 def part_one(filename: str) -> int:
     with open(filename, encoding="utf-8") as f:
-        rugsacks = list(map(lambda line: line.strip(), f.readlines()))
+        sacks = f.read().strip().split("\n")
 
     priorities_sum = 0
-    for r in rugsacks:
-        common = set(r[len(r) // 2 :]) & set(r[: len(r) // 2 :])
+    for r in sacks:
+        mid: int = len(r) // 2
+        common = set(r[mid:]) & set(r[:mid])
         priorities_sum += get_priority(common.pop())
     return priorities_sum
 
 
 def part_two(filename: str) -> int:
     with open(filename, encoding="utf-8") as f:
-        rugsacks = list(map(lambda line: line.strip(), f.readlines()))
+        sacks = f.read().strip().split("\n")
+
     priorities_sum = 0
-    for i in range(0, len(rugsacks), 3):
-        common = set(rugsacks[i]) & set(rugsacks[i + 1]) & set(rugsacks[i + 2])
+    for i in range(0, len(sacks), 3):
+        common = set(sacks[i]) & set(sacks[i + 1]) & set(sacks[i + 2])
         priorities_sum += get_priority(common.pop())
     return priorities_sum
 
