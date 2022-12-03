@@ -8,21 +8,21 @@ def part_one(filename: str) -> int:
     with open(filename) as f:
         rugsacks = list(map(lambda line: line.strip(), f.readlines()))
 
-    sum = 0
+    priorities_sum = 0
     for r in rugsacks:
-        share_item = set(r[len(r) // 2 :]) & set(r[: len(r) // 2 :])
-        sum += get_priority(share_item.pop())
-    return sum
+        common = set(r[len(r) // 2 :]) & set(r[: len(r) // 2 :])
+        priorities_sum += get_priority(common.pop())
+    return priorities_sum
 
 
 def part_two(filename: str) -> int:
     with open(filename) as f:
         rugsacks = list(map(lambda line: line.strip(), f.readlines()))
-    sum = 0
+    priorities_sum = 0
     for i in range(0, len(rugsacks), 3):
         common = set(rugsacks[i]) & set(rugsacks[i + 1]) & set(rugsacks[i + 2])
-        sum += get_priority(common.pop())
-    return sum
+        priorities_sum += get_priority(common.pop())
+    return priorities_sum
 
 
 if __name__ == "__main__":
