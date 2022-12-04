@@ -1,3 +1,6 @@
+import re
+
+
 def are_pairs_containing(pair1: tuple[int, int], pair2: tuple[int, int]) -> bool:
     min1, max1 = pair1
     min2, max2 = pair2
@@ -28,15 +31,13 @@ def part_two(filename: str) -> int:
     return count
 
 
-def parse_input(filename: str) -> list[list[tuple[int, ...]]]:
+def parse_input(filename: str) -> list[list[tuple[int, int]]]:
+    assignments = []
     with open(filename, encoding="utf-8") as f:
         lines = f.read().strip().split("\n")
-        pairs = [line.split(",") for line in lines]
-        assignments = []
-        for pair in pairs:
-            assignments.append(
-                [tuple(map(int, section.split("-"))) for section in pair]
-            )
+        for line in lines:
+            a, b, c, d = map(int, re.findall(r"\d+", line))
+            assignments.append([(a, b), (c, d)])
     return assignments
 
 
