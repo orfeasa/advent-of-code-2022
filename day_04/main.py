@@ -28,14 +28,16 @@ def part_two(filename: str) -> int:
     return count
 
 
-def parse_input(filename: str) -> list[list[tuple[int, int]]]:
+def parse_input(filename: str) -> list[list[tuple[int, ...]]]:
     with open(filename, encoding="utf-8") as f:
         lines = f.read().strip().split("\n")
         pairs = [line.split(",") for line in lines]
-        ranges = []
+        assignments = []
         for pair in pairs:
-            ranges.append([tuple(map(int, section.split("-"))) for section in pair])
-    return ranges
+            assignments.append(
+                [tuple(map(int, section.split("-"))) for section in pair]
+            )
+    return assignments
 
 
 if __name__ == "__main__":
