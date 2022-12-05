@@ -34,10 +34,9 @@ def process_instructions_9001(
     stacks: dict[int, list[str]], instructions: list[list[int]]
 ) -> dict[int, list[str]]:
     for count, start, end in instructions:
-        for _ in range(count):
-            tmp = stacks[start][-count:]
-            stacks[end].extend(tmp)
-            stacks[start] = stacks[start][:-count]
+        tmp = stacks[start][-count:]
+        stacks[end].extend(tmp)
+        stacks[start] = stacks[start][:-count]
     return stacks
 
 

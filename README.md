@@ -33,7 +33,7 @@ Make sure you have given permission to execute (`chmod +x run_all.sh`).
 | 02  | [Rock Paper Scissors](https://adventofcode.com/2022/day/2)     | ⭐⭐    |
 | 03  | [Rucksack Reorganization](https://adventofcode.com/2022/day/3) | ⭐⭐    |
 | 04  | [Camp Cleanup](https://adventofcode.com/2022/day4)             | ⭐⭐    |
-| 05  | [Supply Stacks](https://adventofcode.com/2022/day5)            | ⭐     |
+| 05  | [Supply Stacks](https://adventofcode.com/2022/day5)            | ⭐⭐    |
 | 06  |                                                                |       |
 | 07  |                                                                |       |
 | 08  |                                                                |       |
