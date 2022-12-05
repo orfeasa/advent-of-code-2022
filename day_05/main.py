@@ -1,4 +1,3 @@
-import re
 from collections import defaultdict
 
 
@@ -46,16 +45,14 @@ def parse_input(filename: str) -> tuple[dict[int, list[str]], list[list[int]]]:
     stacks_list = stacks_str.split("\n")
     stacks: dict[int, list[str]] = defaultdict(list)
     for stack in stacks_list[-2::-1]:
-        stack_cursor = 0
-        for column in range(0, len(stack), 4):
-            current = stack[column : column + 3]
-            if current != "   ":
-                stacks[stack_cursor + 1].append(current.lstrip("[").rstrip("]"))
-            stack_cursor += 1
+        for i, box in enumerate(stack[1::4]):
+            if box != " ":
+                stacks[i + 1].append(box)
 
     instructions = []
     for command in commands.strip().split("\n"):
-        instructions.append(list(map(int, re.findall(r"\d+", command))))
+        _, n, _, src, _, dest = command.split()
+        instructions.append(list(map(int, [n, src, dest])))
     return stacks, instructions
 
 
