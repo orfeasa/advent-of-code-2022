@@ -1,4 +1,5 @@
 from collections import defaultdict
+import copy
 
 
 def part_one(filename: str) -> str:
@@ -23,20 +24,22 @@ def get_stack_tops(stacks: dict[int, list[str]]) -> str:
 def process_instructions_9000(
     stacks: dict[int, list[str]], instructions: list[list[int]]
 ) -> dict[int, list[str]]:
+    new_stacks = copy.deepcopy(stacks)
     for count, start, end in instructions:
         for _ in range(count):
-            stacks[end].append(stacks[start].pop())
-    return stacks
+            new_stacks[end].append(new_stacks[start].pop())
+    return new_stacks
 
 
 def process_instructions_9001(
     stacks: dict[int, list[str]], instructions: list[list[int]]
 ) -> dict[int, list[str]]:
+    new_stacks = copy.deepcopy(stacks)
     for count, start, end in instructions:
-        tmp = stacks[start][-count:]
-        stacks[end].extend(tmp)
-        stacks[start] = stacks[start][:-count]
-    return stacks
+        tmp = new_stacks[start][-count:]
+        new_stacks[end].extend(tmp)
+        new_stacks[start] = new_stacks[start][:-count]
+    return new_stacks
 
 
 def parse_input(filename: str) -> tuple[dict[int, list[str]], list[list[int]]]:
