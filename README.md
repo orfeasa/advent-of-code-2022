@@ -34,7 +34,7 @@ Make sure you have given permission to execute (`chmod +x run_all.sh`).
 | 03  | [Rucksack Reorganization](https://adventofcode.com/2022/day/3) | ⭐⭐    |
 | 04  | [Camp Cleanup](https://adventofcode.com/2022/day4)             | ⭐⭐    |
 | 05  | [Supply Stacks](https://adventofcode.com/2022/day5)            | ⭐⭐    |
-| 06  |                                                                |       |
+| 06  | [Tuning Trouble](https://adventofcode.com/2022/day6)           | ⭐⭐    |
 | 07  |                                                                |       |
 | 08  |                                                                |       |
 | 09  |                                                                |       |
