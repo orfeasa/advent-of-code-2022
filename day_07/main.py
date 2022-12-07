@@ -13,7 +13,10 @@ class Directory:
     def get_path(self) -> str:
         if self.parent is None:
             return self.name
-        return f"{self.parent.get_path()}/{self.name}"
+        parent = self.parent.get_path()
+        if parent != "/":
+            return f"{parent}/{self.name}"
+        return f"/{self.name}"
 
     def get_child(self, name: str) -> Type["Directory"] | Type["File"]:
         for child in self.children:
@@ -26,15 +29,17 @@ class Directory:
         if size_cache and curr_path in size_cache:
             return size_cache[curr_path]
         total_size = sum(
-            child.total_size() if isinstance(child, Directory) else child.size
+            child.total_size(size_cache) if isinstance(
+                child, Directory) else child.size
             for child in self.children
         )
-        if size_cache:
+        if size_cache is not None:
             size_cache[curr_path] = total_size
         return total_size
 
     def __repr__(self):
         return f"{self.name} (dir)"
+
 
 
 class File:
@@ -50,19 +55,30 @@ class File:
         return f"{self.name} (file, size={self.size})"
 
 
-def total_size_of_children(directory: Directory, threshold: int) -> int:
-    total_size = 0
-    for child in directory.children:
-        if isinstance(child, Directory) and child.total_size() <= threshold:
-            total_size += child.total_size()
-            total_size += total_size_of_children(child, threshold)
+def calculated_directory_sizes(root: Directory, size_cache: dict[str, int] | None = None) -> dict[str, int]:
+    if size_cache is None:
+        size_cache = {}
+    if root.get_path() in size_cache:
+        return size_cache
+    root.total_size(size_cache)
+    return size_cache
 
-    return total_size
 
 
 def part_one(filename: str) -> int:
     root = parse_input(filename)
-    return total_size_of_children(root, 100000)
+    dir_sizes = calculated_directory_sizes(root)
+    return sum([size for size in dir_sizes.values() if size < 100000])
+
+
+def part_two(filename: str) -> int:
+    root = parse_input(filename)
+    dir_sizes = calculated_directory_sizes(root)
+    total_size = 70000000
+    used_space = dir_sizes["/"]
+    space_needed = 30000000
+    return min([size for size in dir_sizes.values(
+    ) if total_size - used_space + size >= space_needed])
 
 
 def parse_input(filename: str) -> Directory:
@@ -81,19 +97,19 @@ def parse_input(filename: str) -> Directory:
             case ["$", "cd", directory] if directory != "/":
                 current_directory = current_directory.get_child(directory)
             case ["dir", directory]:
-                current_directory.add_child(Directory(directory, current_directory))
+                current_directory.add_child(
+                    Directory(directory, current_directory))
             case [size, filename]:
-                current_directory.add_child(File(filename, current_directory, size))
+                current_directory.add_child(
+                    File(filename, current_directory, int(size)))
 
     return root
 
 
-def part_two(filename: str) -> int:
-    return 0
 
 
 if __name__ == "__main__":
-    input_path = "./day_07/example1.txt"
+    input_path = "./day_07/input.txt"
     print("---Part One---")
     print(part_one(input_path))
 
