@@ -26,8 +26,6 @@ class Directory:
 
     def total_size(self, size_cache: dict[str, int] | None = None) -> int:
         curr_path = self.get_path()
-        if size_cache and curr_path in size_cache:
-            return size_cache[curr_path]
         total_size = sum(
             child.total_size(size_cache) if isinstance(
                 child, Directory) else child.size
@@ -39,7 +37,6 @@ class Directory:
 
     def __repr__(self):
         return f"{self.name} (dir)"
-
 
 
 class File:
@@ -55,14 +52,15 @@ class File:
         return f"{self.name} (file, size={self.size})"
 
 
-def calculated_directory_sizes(root: Directory, size_cache: dict[str, int] | None = None) -> dict[str, int]:
+def calculated_directory_sizes(
+    root: Directory, size_cache: dict[str, int] | None = None
+) -> dict[str, int]:
     if size_cache is None:
         size_cache = {}
     if root.get_path() in size_cache:
         return size_cache
     root.total_size(size_cache)
     return size_cache
-
 
 
 def part_one(filename: str) -> int:
@@ -77,8 +75,13 @@ def part_two(filename: str) -> int:
     total_size = 70000000
     used_space = dir_sizes["/"]
     space_needed = 30000000
-    return min([size for size in dir_sizes.values(
-    ) if total_size - used_space + size >= space_needed])
+    return min(
+        [
+            size
+            for size in dir_sizes.values()
+            if total_size - used_space + size >= space_needed
+        ]
+    )
 
 
 def parse_input(filename: str) -> Directory:
@@ -97,15 +100,13 @@ def parse_input(filename: str) -> Directory:
             case ["$", "cd", directory] if directory != "/":
                 current_directory = current_directory.get_child(directory)
             case ["dir", directory]:
-                current_directory.add_child(
-                    Directory(directory, current_directory))
+                current_directory.add_child(Directory(directory, current_directory))
             case [size, filename]:
                 current_directory.add_child(
-                    File(filename, current_directory, int(size)))
+                    File(filename, current_directory, int(size))
+                )
 
     return root
-
-
 
 
 if __name__ == "__main__":
