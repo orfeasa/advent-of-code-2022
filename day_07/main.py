@@ -21,11 +21,17 @@ class Directory:
                 return child
         raise ValueError(f"Child {name} not found")
 
-    def total_size(self) -> int:
-        return sum(
+    def total_size(self, size_cache: dict[str, int] | None = None) -> int:
+        curr_path = self.get_path()
+        if size_cache and curr_path in size_cache:
+            return size_cache[curr_path]
+        total_size = sum(
             child.total_size() if isinstance(child, Directory) else child.size
             for child in self.children
         )
+        if size_cache:
+            size_cache[curr_path] = total_size
+        return total_size
 
     def __repr__(self):
         return f"{self.name} (dir)"
