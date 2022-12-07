@@ -5,7 +5,7 @@ class Directory:
     def __init__(self, name: str, parent: Type["Directory"] | None = None):
         self.name = name
         self.parent = parent
-        self.children: list[Directory | File] = []
+        self.children: list[Type["Directory"] | Type["File"]] = []
 
     def add_child(self, child: Type["Directory"] | Type["File"]):
         self.children.append(child)
@@ -27,8 +27,7 @@ class Directory:
     def total_size(self, size_cache: dict[str, int] | None = None) -> int:
         curr_path = self.get_path()
         total_size = sum(
-            child.total_size(size_cache) if isinstance(
-                child, Directory) else child.size
+            child.total_size(size_cache) if isinstance(child, Directory) else child.size
             for child in self.children
         )
         if size_cache is not None:
@@ -87,7 +86,7 @@ def part_two(filename: str) -> int:
 def parse_input(filename: str) -> Directory:
     with open(filename, "r", encoding="utf8") as f:
         terminal_output = f.read().strip().split("\n")
-    root = Directory("/")
+    root: Type["Directory"] = Directory("/")
     current_directory = root
     for line in terminal_output:
         match line.split():
