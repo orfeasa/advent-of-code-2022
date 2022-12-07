@@ -29,13 +29,13 @@ Make sure you have given permission to execute (`chmod +x run_all.sh`).
 
 | Day | Name                                                           | Stars |
 | --- | -------------------------------------------------------------- | ----- |
-| 01  | [Calorie Counting](https://adventofcode.com/2022/day/1)        | ⭐⭐    |
-| 02  | [Rock Paper Scissors](https://adventofcode.com/2022/day/2)     | ⭐⭐    |
-| 03  | [Rucksack Reorganization](https://adventofcode.com/2022/day/3) | ⭐⭐    |
-| 04  | [Camp Cleanup](https://adventofcode.com/2022/day4)             | ⭐⭐    |
-| 05  | [Supply Stacks](https://adventofcode.com/2022/day5)            | ⭐⭐    |
-| 06  | [Tuning Trouble](https://adventofcode.com/2022/day6)           | ⭐⭐    |
-| 07  |                                                                |       |
+| 01  | [Calorie Counting](https://adventofcode.com/2022/day/1)        | ⭐⭐  |
+| 02  | [Rock Paper Scissors](https://adventofcode.com/2022/day/2)     | ⭐⭐  |
+| 03  | [Rucksack Reorganization](https://adventofcode.com/2022/day/3) | ⭐⭐  |
+| 04  | [Camp Cleanup](https://adventofcode.com/2022/day4)             | ⭐⭐  |
+| 05  | [Supply Stacks](https://adventofcode.com/2022/day5)            | ⭐⭐  |
+| 06  | [Tuning Trouble](https://adventofcode.com/2022/day6)           | ⭐⭐  |
+| 07  | [No Space Left On Device](https://adventofcode.com/2022/day7)  | ⭐⭐  |
 | 08  |                                                                |       |
 | 09  |                                                                |       |
 | 10  |                                                                |       |
