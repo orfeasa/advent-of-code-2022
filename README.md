@@ -36,7 +36,7 @@ Make sure you have given permission to execute (`chmod +x run_all.sh`).
 | 05  | [Supply Stacks](https://adventofcode.com/2022/day5)            | ⭐⭐  |
 | 06  | [Tuning Trouble](https://adventofcode.com/2022/day6)           | ⭐⭐  |
 | 07  | [No Space Left On Device](https://adventofcode.com/2022/day7)  | ⭐⭐  |
-| 08  |                                                                |       |
+| 08  | [Treetop Tree House](https://adventofcode.com/2022/day8)       | ⭐⭐  |
 | 09  |                                                                |       |
 | 10  |                                                                |       |
 | 11  |                                                                |       |
