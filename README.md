@@ -37,7 +37,7 @@ Make sure you have given permission to execute (`chmod +x run_all.sh`).
 | 06  | [Tuning Trouble](https://adventofcode.com/2022/day6)           | ⭐⭐  |
 | 07  | [No Space Left On Device](https://adventofcode.com/2022/day7)  | ⭐⭐  |
 | 08  | [Treetop Tree House](https://adventofcode.com/2022/day8)       | ⭐⭐  |
-| 09  |                                                                |       |
+| 09  | [Rope Bridge](https://adventofcode.com/2022/day9)              | ⭐⭐  |
 | 10  |                                                                |       |
 | 11  |                                                                |       |
 | 12  |                                                                |       |
