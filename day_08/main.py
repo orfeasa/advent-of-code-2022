@@ -1,6 +1,3 @@
-from functools import reduce
-
-
 def part_one(filename: str) -> int:
     with open(filename, encoding="utf8") as f:
         nums = list(map(lambda n: [int(x)
