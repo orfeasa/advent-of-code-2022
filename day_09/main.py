@@ -14,7 +14,7 @@ def part_one(filename: str) -> int:
 def part_two(filename: str) -> int:
     moves = parse_input(filename)
     knots = [(0, 0) for _ in range(10)]
-    tail_visited: set[tuple[int, int]] = set()
+    tail_visited = {knots[-1]}
     for d, v in moves:
         for _ in range(v):
             dx, dy = move_knot(d)
