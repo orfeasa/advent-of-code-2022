@@ -45,14 +45,15 @@ def move_knot(direction: str) -> tuple[int, int]:
 
 def adjust_tail(tail: tuple[int, int], head: tuple[int, int]) -> tuple[int, int]:
     match head[0] - tail[0], head[1] - tail[1]:
-        case _ as dx, _ as dy if abs(dx) <= 1 and abs(dy) <= 1:
+        case _ as dx, _ as dy if abs(dx) <= 1 and abs(dy) <= 1:  # pylint: disable=E0601
             return (tail[0], tail[1])
         case 0, _ as dy:
             return (tail[0], tail[1] + dy // abs(dy))
         case _ as dx, 0:
             return (tail[0] + dx // abs(dx), tail[1])
-        case dx, dy:
+        case _ as dx, _ as dy:
             return (tail[0] + dx // abs(dx), tail[1] + dy // abs(dy))
+    return (0, 0)
 
 
 if __name__ == "__main__":
