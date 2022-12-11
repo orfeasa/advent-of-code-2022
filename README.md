@@ -39,7 +39,7 @@ Make sure you have given permission to execute (`chmod +x run_all.sh`).
 | 08  | [Treetop Tree House](https://adventofcode.com/2022/day8)       | ⭐⭐    |
 | 09  | [Rope Bridge](https://adventofcode.com/2022/day9)              | ⭐⭐    |
 | 10  | [Cathode-Ray Tube](https://adventofcode.com/2022/day10)        | ⭐⭐    |
-| 11  |                                                                |       |
+| 11  | [Monkey in the Middle](https://adventofcode.com/2022/day11)    | ⭐     |
 | 12  |                                                                |       |
 | 13  |                                                                |       |
 | 14  |                                                                |       |
