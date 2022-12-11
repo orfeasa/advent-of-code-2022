@@ -1,45 +1,34 @@
 from typing import Callable
+import operator
 
 
 class Monkey:
     id: int
     items: list[int]
     operation: Callable[[int, int], int]
-    test_with: int
+    mod: int
     if_true: int
     if_false: int
     count_inspections: int
-    mul_with_self: bool = False
-    mul_with_val: int = 0
 
     def __init__(self, lines_str: str):
         lines = [line.strip() for line in lines_str.split("\n")]
         self.id = int(lines[0].split(" ")[1].strip(":"))
         self.items = [int(item) for item in lines[1].split(": ")[1].split(", ")]
-        test_with = int(lines[3].lstrip("Test: divisible by "))
-        self.operation = self.eval_operation(lines[2].split(" = ")[-1], test_with)
+        self.mod = int(lines[3].lstrip("Test: divisible by "))
+        left, operand, right = lines[2].split(" = ")[-1].split(" ")
+        match [left, operand, right]:
+            case ["old", "+", "old"]:
+                self.operator, self.operand = operator.mul, 2
+            case ["old", "*", "old"]:
+                self.operator, self.operand = operator.pow, 2
+            case ["old", "+", _ as num]:
+                self.operator, self.operand = operator.add, int(num)
+            case ["old", "*", _ as num]:
+                self.operator, self.operand = operator.mul, int(num)
         self.if_true = int(lines[4].split("monkey ")[1])
         self.if_false = int(lines[5].split("monkey ")[1])
         self.count_inspections = 0
-
-    def eval_operation(self, operation: str, mod: int) -> Callable[[int, int], int]:
-        left, operand, right = operation.split(" ")
-        match [left, operand, right]:
-            case ["old", "+", "old"]:
-                return lambda old, divider: ((old + old) // divider) % mod
-            case ["old", "*", "old"]:
-                self.mul_with_self = True
-                return (
-                    lambda old, divider: (((old % mod) * (old % mod)) // divider) % mod
-                )
-            case ["old", "+", _ as num]:
-                return lambda old, divider: ((old + int(num)) // divider) % mod
-            case ["old", "*", _ as num]:
-                return (
-                    lambda old, divider: ((int(num) % mod) * (old % mod) // divider)
-                    % mod
-                )
-        raise ValueError(f"Unrecognised operation: {operation}")
 
     def __repr__(self) -> str:
         return f"Monkey {self.id}: {', '.join(str(item) for item in self.items)}"
@@ -81,16 +70,17 @@ def part_two(filename: str) -> int:
 
 
 def run_round(monkeys: dict[int, "Monkey"], worry_divider=1) -> None:
-    for id, _ in enumerate((monkeys)):
-        monkey = monkeys[id]
+    for monkey_id, _ in enumerate((monkeys)):
+        monkey = monkeys[monkey_id]
         if len(monkey.items) == 0:
             continue
         monkey.count_inspections += len(monkey.items)
         for item in monkey.items:
-            if monkey.operation(item, worry_divider) == 0:
-                monkeys[monkey.if_true].items.append(item)
+            new = monkey.operator(item, monkey.operand) // worry_divider
+            if new % monkey.mod == 0:
+                monkeys[monkey.if_true].items.append(new)
             else:
-                monkeys[monkey.if_false].items.append(item)
+                monkeys[monkey.if_false].items.append(new)
         monkey.items = []
 
 
