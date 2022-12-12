@@ -10,8 +10,7 @@ def part_two(filename: str) -> int:
     lines = parse_input(filename)
     start, end = get_start_end(lines)
     graph = construct_graph(lines)
-    start_candidates = {(x, y)
-                        for x, y in graph if get_elevation(lines[y][x]) == 0}
+    start_candidates = {(x, y) for x, y in graph if get_elevation(lines[y][x]) == 0}
     steps_required = []
     for start in start_candidates:
         visited = bfs(graph, start)
@@ -56,7 +55,7 @@ def construct_graph(lines: list[str]) -> dict[tuple[int, int], set[tuple[int, in
                 if 0 <= x + dx < len(line) and 0 <= y + dy < len(lines)
             ]
             for x1, y1 in candidates:
-                if (get_elevation(lines[y1][x1])-get_elevation(char) <= 1):
+                if (get_elevation(lines[y1][x1]) - get_elevation(char) <= 1):
                     children.add((x1, y1))
             graph[coord] = children
     return graph
@@ -74,7 +73,7 @@ def bfs(
         for neighbour in graph[s]:
             if neighbour not in visited:
                 visited[neighbour] = steps + 1
-                queue.append((neighbour, steps+1))
+                queue.append((neighbour, steps + 1))
     return visited
 
 
