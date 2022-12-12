@@ -1,3 +1,6 @@
+from collections import deque
+
+
 def part_one(filename: str) -> int:
     lines = parse_input(filename)
     start, end = get_start_end(lines)
@@ -67,9 +70,10 @@ def bfs(
 ):
     visited = {start: 0}
     steps = 0
-    queue = [(start, steps)]
+    queue = deque()
+    queue.append((start, steps))
     while queue:
-        s, steps = queue.pop(0)
+        s, steps = queue.popleft()
         for neighbour in graph[s]:
             if neighbour not in visited:
                 visited[neighbour] = steps + 1
