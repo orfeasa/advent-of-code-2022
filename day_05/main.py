@@ -1,5 +1,5 @@
-from collections import defaultdict
 import copy
+from collections import defaultdict
 
 
 def part_one(filename: str) -> str:

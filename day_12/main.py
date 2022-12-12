@@ -1,4 +1,5 @@
 from collections import deque
+from typing import Deque
 
 
 def part_one(filename: str) -> int:
@@ -70,7 +71,7 @@ def bfs(
 ):
     visited = {start: 0}
     steps = 0
-    queue = deque()
+    queue: Deque[tuple[tuple[int, int], int]] = deque()
     queue.append((start, steps))
     while queue:
         s, steps = queue.popleft()
