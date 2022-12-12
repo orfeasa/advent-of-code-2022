@@ -40,7 +40,7 @@ Make sure you have given permission to execute (`chmod +x run_all.sh`).
 | 09  | [Rope Bridge](https://adventofcode.com/2022/day9)              | ⭐⭐    |
 | 10  | [Cathode-Ray Tube](https://adventofcode.com/2022/day10)        | ⭐⭐    |
 | 11  | [Monkey in the Middle](https://adventofcode.com/2022/day11)    | ⭐⭐    |
-| 12  |                                                                |       |
+| 12  | [Hill Climbing Algorithm](https://adventofcode.com/2022/day12) |       |
 | 13  |                                                                |       |
 | 14  |                                                                |       |
 | 15  |                                                                |       |
