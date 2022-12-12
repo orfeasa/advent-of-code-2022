@@ -1,11 +1,10 @@
-from typing import Callable
+from functools import reduce
 import operator
 
 
 class Monkey:
     id: int
     items: list[int]
-    operation: Callable[[int, int], int]
     operand: int
     mod: int
     if_true: int
@@ -17,8 +16,8 @@ class Monkey:
         self.id = int(lines[0].split(" ")[1].strip(":"))
         self.items = [int(item) for item in lines[1].split(": ")[1].split(", ")]
         self.mod = int(lines[3].lstrip("Test: divisible by "))
-        left, operand, right = lines[2].split(" = ")[-1].split(" ")
-        match [left, operand, right]:
+        left, symbol, right = lines[2].split(" = ")[-1].split(" ")
+        match [left, symbol, right]:
             case ["old", "+", "old"]:
                 self.operator, self.operand = operator.mul, 2
             case ["old", "*", "old"]:
@@ -47,40 +46,24 @@ def part_two(filename: str) -> int:
     monkeys = parse_input(filename)
     for _ in range(10000):
         run_round(monkeys, 1)
-        if _ + 1 in [1, 20] + [i * 1000 for i in range(1, 11)]:
-            print(f"\n== After round {_+1} ==")
-            for monkey in monkeys.values():
-                print(
-                    f"Monkey {monkey.id}: inspected items {monkey.count_inspections} times."
-                )
     inspections = sorted([monkey.count_inspections for monkey in monkeys.values()])
     return inspections[-1] * inspections[-2]
 
 
 def run_round(monkeys: dict[int, "Monkey"], worry_divider=1) -> None:
+    mod_cap = reduce(operator.mul, [monkey.mod for monkey in monkeys.values()], 1)
     for monkey_id, _ in enumerate((monkeys)):
         monkey = monkeys[monkey_id]
         if len(monkey.items) == 0:
             continue
         monkey.count_inspections += len(monkey.items)
         for item in monkey.items:
-            new = monkey.operator(item, monkey.operand) // worry_divider
-            test = 0
-            if monkey.operator is operator.add:
-                test = new % monkey.mod
-            elif monkey.operator is operator.mul:
-                test = mod_prod(new, monkey.operand, monkey.mod)
-            elif monkey.operator is operator.pow and monkey.operand == 2:
-                test = mod_prod(new, new, monkey.mod)
-            if test == 0:
+            new = monkey.operator(item, monkey.operand) // worry_divider % mod_cap
+            if new % monkey.mod == 0:
                 monkeys[monkey.if_true].items.append(new)
             else:
                 monkeys[monkey.if_false].items.append(new)
         monkey.items = []
-
-
-def mod_prod(a, b, mod):
-    return ((a % mod) * (b % mod)) % mod
 
 
 def parse_input(filename: str) -> dict[int, Monkey]:
