@@ -21,6 +21,47 @@ def get_elevation(elevation: str) -> int:
 
 
 def part_one(filename: str) -> int:
+    start, end, graph = parse_input(filename)
+    visited = bfs(graph, start)
+    return visited[end]
+
+
+def part_two(filename: str) -> int:
+    with open(filename, encoding="utf8") as f:
+        lines = [line.strip() for line in f.readlines()]
+    start = end = (-1, -1)
+    for y, line in enumerate(lines):
+        if line.find("S") != -1:
+            start = (line.find("S"), y)
+        if line.find("E") != -1:
+            end = (line.find("E"), y)
+    start_candidates = {start}
+    graph = {}
+    for y, line in enumerate(lines):
+        for x, char in enumerate(line):
+            coord = (x, y)
+            children = set()
+            candidates = [
+                (x + dx, y + dy)
+                for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]
+                if 0 <= x + dx < len(line) and 0 <= y + dy < len(lines)
+            ]
+            for x1, y1 in candidates:
+                if (get_elevation(lines[y1][x1])-get_elevation(char) <= 1):
+                    children.add((x1, y1))
+            graph[coord] = children
+            if char == "a":
+                start_candidates.add(coord)
+
+    steps_required = []
+    for start in start_candidates:
+        visited = bfs(graph, start)
+        if end in visited:
+            steps_required.append(visited[end])
+    return min(steps_required)
+
+
+def parse_input(filename: str) -> tuple[tuple[int, int], tuple[int, int], dict[tuple[int, int], set[tuple[int, int]]]]:
     with open(filename, encoding="utf8") as f:
         lines = [line.strip() for line in f.readlines()]
     start = end = (-1, -1)
@@ -37,44 +78,34 @@ def part_one(filename: str) -> int:
             children = set()
             candidates = [
                 (x + dx, y + dy)
-                for dx in [-1, 1]
-                for dy in [-1, 1]
+                for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]
                 if 0 <= x + dx < len(line) and 0 <= y + dy < len(lines)
             ]
-            for candidate in candidates:
-                if (
-                    abs(
-                        get_elevation(char)
-                        - get_elevation(lines[candidate[1]][candidate[0]])
-                    )
-                    <= 1
-                ):
-                    children.add(candidate)
-            if children:
-                graph[coord] = children
-    visited = {start}
-    dfs(visited, graph, start)
-    return 0
+            for x1, y1 in candidates:
+                if (get_elevation(lines[y1][x1])-get_elevation(char) <= 1):
+                    children.add((x1, y1))
+            graph[coord] = children
+    return start, end, graph
 
 
-def dfs(
-    visited: set[tuple[int, int]],
+def bfs(
     graph: dict[tuple[int, int], set[tuple[int, int]]],
-    node: tuple[int, int],
+    start: tuple[int, int],
 ):
-    if node not in visited:
-        visited.add(node)
-        print(visited)
-        for neighbour in graph[node]:
-            dfs(visited, graph, neighbour)
-
-
-def part_two(filename: str) -> int:
-    return 0
+    visited = {start: 0}
+    steps = 0
+    queue = [(start, steps)]
+    while queue:
+        s, steps = queue.pop(0)
+        for neighbour in graph[s]:
+            if neighbour not in visited:
+                visited[neighbour] = steps + 1
+                queue.append((neighbour, steps+1))
+    return visited
 
 
 if __name__ == "__main__":
-    input_path = "./day_12/example1.txt"
+    input_path = "./day_12/input.txt"
     print("---Part One---")
     print(part_one(input_path))
 
