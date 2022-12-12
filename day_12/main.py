@@ -6,8 +6,7 @@ def part_one(filename: str) -> int:
     lines = parse_input(filename)
     start, end = get_start_end(lines)
     graph = construct_graph(lines)
-    visited = bfs(graph, start)
-    return visited[end]
+    return bfs(graph, start, end)
 
 
 def part_two(filename: str) -> int:
@@ -17,9 +16,9 @@ def part_two(filename: str) -> int:
     start_candidates = {(x, y) for x, y in graph if get_elevation(lines[y][x]) == 0}
     steps_required = []
     for start in start_candidates:
-        visited = bfs(graph, start)
-        if end in visited:
-            steps_required.append(visited[end])
+        steps = bfs(graph, start, end)
+        if steps != -1:
+            steps_required.append(steps)
     return min(steps_required)
 
 
@@ -68,18 +67,21 @@ def construct_graph(lines: list[str]) -> dict[tuple[int, int], set[tuple[int, in
 def bfs(
     graph: dict[tuple[int, int], set[tuple[int, int]]],
     start: tuple[int, int],
+    end: tuple[int, int],
 ):
     visited = {start: 0}
     steps = 0
     queue: Deque[tuple[tuple[int, int], int]] = deque()
     queue.append((start, steps))
     while queue:
-        s, steps = queue.popleft()
-        for neighbour in graph[s]:
+        current, steps = queue.popleft()
+        if current == end:
+            return steps
+        for neighbour in graph[current]:
             if neighbour not in visited:
                 visited[neighbour] = steps + 1
                 queue.append((neighbour, steps + 1))
-    return visited
+    return -1
 
 
 if __name__ == "__main__":
