@@ -4,27 +4,27 @@ from functools import cmp_to_key, reduce
 
 
 def part_one(filename: str) -> int:
-    with open(filename, "r", encoding="utf8") as f:
-        lines = [
-            [ast.literal_eval(line) for line in pair.strip().split("\n")]
-            for pair in f.read().split("\n\n")
-        ]
+    lines = parse_input(filename)
     return sum([i + 1 for i in range(len(lines)) if are_values_ordered(*lines[i])])
 
 
 def part_two(filename: str) -> int:
-    with open(filename, "r", encoding="utf8") as f:
-        lines = [
-            [ast.literal_eval(line) for line in pair.strip().split("\n")]
-            for pair in f.read().split("\n\n")
-        ]
-    flat_lines = [item for sublist in lines for item in sublist]
+    lines = parse_input(filename)
     keys = [[[2]], [[6]]]
+    flat_lines = [item for sublist in lines for item in sublist]
     flat_lines.extend(keys)
     flat_lines.sort(key=cmp_to_key(are_values_ordered_cmp), reverse=True)
     return reduce(
         operator.mul, [ind + 1 for ind, x in enumerate(flat_lines) if x in keys]
     )
+
+
+def parse_input(filename: str) -> list:
+    with open(filename, "r", encoding="utf8") as f:
+        return [
+            [ast.literal_eval(line) for line in pair.strip().split("\n")]
+            for pair in f.read().split("\n\n")
+        ]
 
 
 def are_values_ordered_cmp(left: int | list, right: int | list) -> int:
@@ -35,6 +35,7 @@ def are_values_ordered_cmp(left: int | list, right: int | list) -> int:
             return -1
         case None:
             return 0
+    raise ValueError(f"Unexpected return value: {are_values_ordered(left, right)}")
 
 
 def are_values_ordered(left: int | list, right: int | list) -> bool | None:
