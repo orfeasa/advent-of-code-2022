@@ -5,7 +5,7 @@ from functools import cmp_to_key, reduce
 
 def part_one(filename: str) -> int:
     lines = parse_input(filename)
-    return sum([i + 1 for i in range(len(lines)) if are_values_ordered(*lines[i])])
+    return sum([i + 1 for i in range(len(lines)) if cmp_values(*lines[i]) == 1])
 
 
 def part_two(filename: str) -> int:
@@ -13,7 +13,7 @@ def part_two(filename: str) -> int:
     keys = [[[2]], [[6]]]
     flat_lines = [item for sublist in lines for item in sublist]
     flat_lines.extend(keys)
-    flat_lines.sort(key=cmp_to_key(are_values_ordered_cmp), reverse=True)
+    flat_lines.sort(key=cmp_to_key(cmp_values), reverse=True)
     return reduce(
         operator.mul, [ind + 1 for ind, x in enumerate(flat_lines) if x in keys]
     )
@@ -27,33 +27,26 @@ def parse_input(filename: str) -> list:
         ]
 
 
-def are_values_ordered_cmp(left: int | list, right: int | list) -> int:
-    match are_values_ordered(left, right):
-        case True:
-            return 1
-        case False:
-            return -1
-        case None:
-            return 0
-    raise ValueError(f"Unexpected return value: {are_values_ordered(left, right)}")
+# returns 1 if values are in the right order, -1 if not, 0 if equal
+def cmp_values(left: int | list, right: int | list) -> int:
+    def cmp(left, right: int) -> int:
+        return (left < right) - (left > right)
 
-
-def are_values_ordered(left: int | list, right: int | list) -> bool | None:
     if isinstance(left, int) and isinstance(right, int):
         if left == right:
-            return None
-        return left < right
+            return 0
+        return cmp(left, right)
     if isinstance(left, list) and isinstance(right, list):
         for i in range(min(len(left), len(right))):
-            if (cmp := are_values_ordered(left[i], right[i])) is not None:
-                return cmp
+            if (cmp_val := cmp_values(left[i], right[i])) != 0:
+                return cmp_val
         if len(left) == len(right):
-            return None
-        return len(left) < len(right)
+            return 0
+        return cmp(len(left), len(right))
     if isinstance(left, int) and isinstance(right, list):
-        return are_values_ordered([left], right)
+        return cmp_values([left], right)
     if isinstance(left, list) and isinstance(right, int):
-        return are_values_ordered(left, [right])
+        return cmp_values(left, [right])
     raise ValueError(f"Invalid types: {type(left)} and {type(right)}")
 
 
