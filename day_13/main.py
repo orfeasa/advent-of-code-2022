@@ -1,10 +1,10 @@
 import ast
-from functools import cmp_to_key, reduce
 import operator
+from functools import cmp_to_key, reduce
 
 
 def part_one(filename: str) -> int:
-    with open(filename, "r") as f:
+    with open(filename, "r", encoding="utf8") as f:
         lines = [
             [ast.literal_eval(line) for line in pair.strip().split("\n")]
             for pair in f.read().split("\n\n")
@@ -13,7 +13,7 @@ def part_one(filename: str) -> int:
 
 
 def part_two(filename: str) -> int:
-    with open(filename, "r") as f:
+    with open(filename, "r", encoding="utf8") as f:
         lines = [
             [ast.literal_eval(line) for line in pair.strip().split("\n")]
             for pair in f.read().split("\n\n")
