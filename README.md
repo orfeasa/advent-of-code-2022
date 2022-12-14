@@ -42,7 +42,7 @@ Make sure you have given permission to execute (`chmod +x run_all.sh`).
 | 11  | [Monkey in the Middle](https://adventofcode.com/2022/day11)    | ⭐⭐    |
 | 12  | [Hill Climbing Algorithm](https://adventofcode.com/2022/day12) | ⭐⭐    |
 | 13  | [Distress Signal](https://adventofcode.com/2022/day13)         | ⭐⭐    |
-| 14  |                                                                |       |
+| 14  | [Regolith Reservoir](https://adventofcode.com/2022/day14)      | ⭐     |
 | 15  |                                                                |       |
 | 16  |                                                                |       |
 | 17  |                                                                |       |
