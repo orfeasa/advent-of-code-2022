@@ -26,7 +26,34 @@ def part_one(filename: str) -> int:
 
 
 def part_two(filename: str) -> int:
-    return 0
+    rocks = parse_input(filename)
+
+    y_max = max([y for _, y in rocks]) + 1
+    sand = set()
+    abyss = False
+    count_sand = 0
+    while not abyss:
+        new_sand = (500, 0)
+        curr_pos = new_sand
+        rest = False
+        while not rest:
+            if curr_pos[1] >= y_max:
+                rest = True
+                count_sand += 1
+                sand.add(curr_pos)
+            for dx, dy in [(0, 1), (-1, 1), (1, 1)]:
+                next_pos = (curr_pos[0] + dx, curr_pos[1] + dy)
+                if next_pos not in rocks | sand:
+                    curr_pos = next_pos
+                    break
+            else:
+                rest = True
+                count_sand += 1
+                sand.add(curr_pos)
+                if curr_pos == new_sand:
+                    abyss = True
+                    break
+    return count_sand
 
 
 def parse_input(filename: str) -> set[tuple[int, int]]:
