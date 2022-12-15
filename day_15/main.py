@@ -10,17 +10,20 @@ def part_one(filename: str) -> int:
     x_min, x_max = min(xs), max(xs)
     y_min, y_max = min(ys), max(ys)
     sensors_dist = {(s[0][0], s[0][1]): manhattan(s[0], s[1]) for s in sensors_beacons}
-    y = 10
+    y = 2000000
     count = 0
-    # draw(sensors_beacons)
-    for x in range(x_min, x_max + 1):
+    # draw(sensors,beacons,sensors_beacons)
+    for x in range(x_min-1, x_max + 1):
         point = (x, y)
         if (
             is_point_covered(point, sensors_dist)
             and point not in sensors
             and point not in beacons
         ):
+            print("#", end="")
             count += 1
+        else:
+            print(".", end="")
     return count
 
 
@@ -51,20 +54,21 @@ def parse_input(filename: str) -> list[list[tuple[int, int]]]:
     return sensors
 
 
-def draw(sensors_beacons: list[list[tuple[int, int]]]) -> None:
-    sensors = {sb[0] for sb in sensors_beacons}
-    beacons = {sb[1] for sb in sensors_beacons}
+def draw(sensors, beacons: set[tuple[int,int]],sensors_beacons) -> None:
     xs = [s[0] for s in sensors] + [b[0] for b in beacons]
     ys = [s[1] for s in sensors] + [b[1] for b in beacons]
     x_min, x_max = min(xs), max(xs)
     y_min, y_max = min(ys), max(ys)
-    for y in range(y_min, y_max + 1):
-        print(f"{y} ", end="")
-        for x in range(x_min - 1, x_max + 1):
+    sensors_dist = {(s[0][0], s[0][1]): manhattan(s[0], s[1]) for s in sensors_beacons}
+    for y in range(y_min-10, y_max + 10):
+        print(f"{y:02d} ", end="")
+        for x in range(x_min - 10, x_max + 10):
             if (x, y) in sensors:
                 print("S", end="")
             elif (x, y) in beacons:
                 print("B", end="")
+            elif is_point_covered((x,y), sensors_dist):
+                print("#", end="")
             else:
                 print(".", end="")
         print("")
