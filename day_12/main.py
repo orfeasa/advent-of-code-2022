@@ -68,7 +68,7 @@ def bfs(
     graph: dict[tuple[int, int], set[tuple[int, int]]],
     start: tuple[int, int],
     end: tuple[int, int],
-):
+) -> int:
     visited = {start: 0}
     steps = 0
     queue: Deque[tuple[tuple[int, int], int]] = deque()
