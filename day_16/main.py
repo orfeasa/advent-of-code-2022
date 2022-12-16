@@ -1,9 +1,34 @@
 import re
 from collections import deque
 from typing import Deque
+from collections import defaultdict
 
 
 def part_one(filename: str) -> int:
+    valve_flow, valve_tunnels = parse_input(filename)
+    path = ("AA",)
+    path_to_valve: dict[tuple[str, ...], int] = defaultdict(int)
+    path_to_time: dict[tuple[str, ...], int] = defaultdict(int)
+    time = 0
+    opened = set()
+    while time <= 30:
+        candidates = {
+            valve for valve in valve_flow if valve_flow[valve] and valve not in opened
+        }
+        for next in candidates:
+            curr = path[-1]
+            path_to_valve[path + (next,)] = path_to_valve[
+                path
+            ] + total_pressure_released_with_travel(
+                curr, next, valve_flow, valve_tunnels, time
+            )
+            path_to_time[path + (next,)] = path_to_valve[
+                path
+            ] + bfs(valve_tunnels, curr, next) + 1
+    return max(path_to_valve.values())
+
+
+def part_one_greedy(filename: str) -> int:
     valve_flow, valve_tunnels = parse_input(filename)
 
     # greedy algorithm
@@ -32,7 +57,7 @@ def part_one(filename: str) -> int:
         )
         curr = next_valve
 
-    return 0
+    return total_released
 
 
 def part_two(filename: str) -> int:
@@ -102,7 +127,7 @@ def parse_input(filename: str) -> tuple[dict[str, int], dict[str, set[str]]]:
 
 
 if __name__ == "__main__":
-    input_path = "./day_16/input.txt"
+    input_path = "./day_16/example1.txt"
     print("---Part One---")
     print(part_one(input_path))
 
