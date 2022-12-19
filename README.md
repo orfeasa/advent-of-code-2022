@@ -46,7 +46,7 @@ Make sure you have given permission to execute (`chmod +x run_all.sh`).
 | 15  |                                                                |       |
 | 16  |                                                                |       |
 | 17  |                                                                |       |
-| 18  | [Boiling Boulders](https://adventofcode.com/2022/day18)        |       |
+| 18  | [Boiling Boulders](https://adventofcode.com/2022/day18)        | ⭐     |
 | 19  |                                                                |       |
 | 20  |                                                                |       |
 | 21  |                                                                |       |
