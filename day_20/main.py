@@ -34,8 +34,24 @@ class CircularLinkedList:
 def part_one(filename: str) -> int:
     with open(filename, encoding="utf8") as f:
         sequence = list(map(int, f.read().splitlines()))
+    cll, nodes_ordered = initialize_cll(sequence)
+    mix_numbers(nodes_ordered, cll)
+    return sum(find_coords(cll, nodes_ordered[0]))
 
-    # initialize the circular linked list
+
+def part_two(filename: str) -> int:
+    with open(filename, encoding="utf8") as f:
+        sequence = list(map(int, f.read().splitlines()))
+    cll, nodes_ordered = initialize_cll(sequence, 811589153)
+    for _ in range(10):
+        mix_numbers(nodes_ordered, cll)
+    return sum(find_coords(cll, nodes_ordered[0]))
+
+
+def initialize_cll(
+    numbers: list[int], multiplier=1
+) -> tuple[CircularLinkedList, list[Node]]:
+    sequence = [num * multiplier for num in numbers]
     cll = CircularLinkedList()
     cll.head = Node(sequence[0])
     prev_node = cll.head
@@ -48,8 +64,10 @@ def part_one(filename: str) -> int:
         nodes_ordered.append(node)
     prev_node.next = cll.head
     cll.head.prev = prev_node
+    return cll, nodes_ordered
 
-    # move elements in the sequence
+
+def mix_numbers(nodes_ordered: list[Node], cll: CircularLinkedList):
     for node in nodes_ordered:
         steps = node.data % (len(nodes_ordered) - 1)
         if steps == 0:
@@ -68,6 +86,8 @@ def part_one(filename: str) -> int:
         insert_node.next.prev = node
         insert_node.next = node
 
+
+def find_coords(cll: CircularLinkedList, node: Node) -> list[int]:
     coords = []
     node = cll.head
     while node.data != 0:
@@ -76,11 +96,7 @@ def part_one(filename: str) -> int:
         node = node.next
         if ind in [1000, 2000, 3000]:
             coords.append(node.data)
-    return sum(coords)
-
-
-def part_two(filename: str) -> int:
-    return 0
+    return coords
 
 
 if __name__ == "__main__":

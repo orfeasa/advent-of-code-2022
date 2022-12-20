@@ -48,7 +48,7 @@ Make sure you have given permission to execute (`chmod +x run_all.sh`).
 | 17  |                                                                 |       |
 | 18  |                                                                 |       |
 | 19  |                                                                 |       |
-| 20  | [Grove Positioning System](https://adventofcode.com/2022/day20) | ⭐     |
+| 20  | [Grove Positioning System](https://adventofcode.com/2022/day20) | ⭐⭐    |
 | 21  |                                                                 |       |
 | 22  |                                                                 |       |
 | 23  |                                                                 |       |
