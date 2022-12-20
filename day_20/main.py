@@ -15,37 +15,40 @@ class CircularLinkedList:
     def __init__(self):
         self.head: Node | None = None
 
-    def traverse(self, starting_point: Node | None = None):
-        if starting_point is None:
-            starting_point = self.head
-        node = starting_point
-        while node is not None and (node.next != starting_point):
-            yield node
-            node = node.next
-        yield node
-
     def print_list(self, starting_point=None):
+        def traverse(self, starting_point: Node | None = None):
+            if starting_point is None:
+                starting_point = self.head
+            node = starting_point
+            while node is not None and (node.next != starting_point):
+                yield node
+                node = node.next
+            yield node
+
         nodes = []
-        for node in self.traverse(starting_point):
+        for node in traverse(starting_point):
             nodes.append(str(node))
         print(", ".join(nodes))
 
 
 def part_one(filename: str) -> int:
-    with open(filename, encoding="utf8") as f:
-        sequence = list(map(int, f.read().splitlines()))
+    sequence = read_input(filename)
     cll, nodes_ordered = initialize_cll(sequence)
     mix_numbers(nodes_ordered, cll)
     return sum(find_coords(cll, nodes_ordered[0]))
 
 
 def part_two(filename: str) -> int:
-    with open(filename, encoding="utf8") as f:
-        sequence = list(map(int, f.read().splitlines()))
+    sequence = read_input(filename)
     cll, nodes_ordered = initialize_cll(sequence, 811589153)
     for _ in range(10):
         mix_numbers(nodes_ordered, cll)
     return sum(find_coords(cll, nodes_ordered[0]))
+
+
+def read_input(filename: str) -> list[int]:
+    with open(filename, encoding="utf8") as f:
+        return list(map(int, f.read().splitlines()))
 
 
 def initialize_cll(
