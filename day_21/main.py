@@ -1,13 +1,21 @@
 import operator
+import sympy as sym
 
 
 def part_one(filename: str) -> int:
     monkeys = parse_input(filename)
-    return calc_monkey_val("root", monkeys)
+    return int(calc_monkey_val("root", monkeys))
 
 
 def part_two(filename: str) -> int:
-    return 0
+    monkeys = parse_input(filename)
+    monkeys["humn"] = sym.Symbol("x")
+    m1, _, m2 = monkeys["root"].split(" ")
+    return int(
+        sym.solve(
+            calc_monkey_val(m2, monkeys) - calc_monkey_val(m1, monkeys), monkeys["humn"]
+        )[0]
+    )
 
 
 def parse_input(filename: str) -> dict[str, int | str]:
@@ -23,7 +31,7 @@ def parse_input(filename: str) -> dict[str, int | str]:
 
 
 def calc_monkey_val(monkey: str, monkeys: dict) -> int:
-    if type(monkeys[monkey]) is int:
+    if type(monkeys[monkey]) is int or type(monkeys[monkey]) is sym.Symbol:
         return monkeys[monkey]
 
     m1, _, m2 = monkeys[monkey].split(" ")
@@ -35,7 +43,7 @@ def calc_monkey_val(monkey: str, monkeys: dict) -> int:
         case "*":
             oper = operator.mul
         case "/":
-            oper = operator.floordiv
+            oper = operator.truediv
     return oper(calc_monkey_val(m1, monkeys), calc_monkey_val(m2, monkeys))
 
 
