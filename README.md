@@ -43,11 +43,11 @@ Make sure you have given permission to execute (`chmod +x run_all.sh`).
 | 12  | [Hill Climbing Algorithm](https://adventofcode.com/2022/day12)  | ⭐⭐  |
 | 13  | [Distress Signal](https://adventofcode.com/2022/day13)          | ⭐⭐  |
 | 14  | [Regolith Reservoir](https://adventofcode.com/2022/day14)       | ⭐⭐  |
-| 15  |                                                                 |       |
-| 16  |                                                                 |       |
-| 17  |                                                                 |       |
-| 18  |                                                                 |       |
-| 19  |                                                                 |       |
+| 15  | [Beacon Exclusion Zone](https://adventofcode.com/2022/day15)    |       |
+| 16  | [Proboscidea Volcanium](https://adventofcode.com/2022/day16)    |       |
+| 17  | [Pyroclastic Flow](https://adventofcode.com/2022/day17)         |       |
+| 18  | [Boiling Boulders](https://adventofcode.com/2022/day18)         |       |
+| 19  | [Not Enough Minerals](https://adventofcode.com/2022/day19)      |       |
 | 20  | [Grove Positioning System](https://adventofcode.com/2022/day20) | ⭐⭐  |
 | 21  | [Monkey Math](https://adventofcode.com/2022/day21)              | ⭐⭐  |
 | 22  |                                                                 |       |
