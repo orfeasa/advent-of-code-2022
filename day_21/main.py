@@ -1,4 +1,5 @@
 import operator
+from typing import Any
 
 import sympy as sym
 
@@ -21,16 +22,16 @@ def part_two(filename: str) -> int:
     )
 
 
-def parse_input(filename: str) -> dict[str, int | str | sym.Symbol]:
+def parse_input(filename: str) -> dict[str, Any]:
     with open(filename, encoding="utf-8") as f:
         monkeys: dict[str, int | str] = {
             line.strip().split(": ")[0]: line.strip().split(": ")[1]
             for line in f.readlines()
         }
 
-    for monkey in monkeys:
-        if isinstance(monkeys[monkey], str) and len(monkeys[monkey].split(" ")) == 1:
-            monkeys[monkey] = int(monkeys[monkey])
+    for monkey, val in monkeys.items():
+        if isinstance(val, str) and len(val.split(" ")) == 1:
+            monkeys[monkey] = int(val)
     return monkeys
 
 
@@ -41,14 +42,14 @@ def calc_monkey_val(monkey: str, monkeys: dict) -> int | float | sym.Symbol:
     m1, _, m2 = monkeys[monkey].split(" ")
     match monkeys[monkey].split(" ")[1]:
         case "+":
-            oper = operator.add
+            operation = operator.add
         case "-":
-            oper = operator.sub
+            operation = operator.sub
         case "*":
-            oper = operator.mul
+            operation = operator.mul
         case "/":
-            oper = operator.truediv
-    return oper(calc_monkey_val(m1, monkeys), calc_monkey_val(m2, monkeys))
+            operation = (operator.truediv)  # floordiv would be best, but sympy doesn't support it
+    return operation(calc_monkey_val(m1, monkeys), calc_monkey_val(m2, monkeys))
 
 
 if __name__ == "__main__":
