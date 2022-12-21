@@ -36,20 +36,25 @@ def parse_input(filename: str) -> dict[str, Any]:
 
 
 def calc_monkey_val(monkey: str, monkeys: dict) -> int | float | sym.Symbol:
-    if isinstance(monkeys[monkey], (int, sym.Symbol)):
-        return monkeys[monkey]
-
-    m1, _, m2 = monkeys[monkey].split(" ")
-    match monkeys[monkey].split(" ")[1]:
-        case "+":
-            operation = operator.add
-        case "-":
-            operation = operator.sub
-        case "*":
-            operation = operator.mul
-        case "/":
-            operation = (operator.truediv)  # floordiv would be best, but sympy doesn't support it
-    return operation(calc_monkey_val(m1, monkeys), calc_monkey_val(m2, monkeys))
+    if isinstance(monkeys[monkey], str):
+        m1, _, m2 = monkeys[monkey].split(" ")
+        match monkeys[monkey].split(" ")[1]:
+            case "+":
+                operation = operator.add
+            case "-":
+                operation = operator.sub
+            case "*":
+                operation = operator.mul
+            case "/":
+                operation = (
+                    operator.truediv
+                )  # floordiv would be best, but sympy doesn't support it
+            case _:
+                raise ValueError("Unknown operation")
+        monkeys[monkey] = operation(
+            calc_monkey_val(m1, monkeys), calc_monkey_val(m2, monkeys)
+        )
+    return monkeys[monkey]
 
 
 if __name__ == "__main__":
