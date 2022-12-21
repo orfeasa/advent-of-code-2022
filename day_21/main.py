@@ -1,4 +1,5 @@
 import operator
+
 import sympy as sym
 
 
@@ -10,7 +11,9 @@ def part_one(filename: str) -> int:
 def part_two(filename: str) -> int:
     monkeys = parse_input(filename)
     monkeys["humn"] = sym.Symbol("x")
-    m1, _, m2 = monkeys["root"].split(" ")
+    m1, _, m2 = (
+        monkeys["root"].split(" ") if isinstance(monkeys["root"], str) else ("", "", "")
+    )
     return int(
         sym.solve(
             calc_monkey_val(m2, monkeys) - calc_monkey_val(m1, monkeys), monkeys["humn"]
@@ -18,20 +21,21 @@ def part_two(filename: str) -> int:
     )
 
 
-def parse_input(filename: str) -> dict[str, int | str]:
+def parse_input(filename: str) -> dict[str, int | str | sym.Symbol]:
     with open(filename, encoding="utf-8") as f:
         monkeys: dict[str, int | str] = {
             line.strip().split(": ")[0]: line.strip().split(": ")[1]
             for line in f.readlines()
         }
+
     for monkey in monkeys:
-        if type(monkeys[monkey]) is str and len(monkeys[monkey].split(" ")) == 1:
+        if isinstance(monkeys[monkey], str) and len(monkeys[monkey].split(" ")) == 1:
             monkeys[monkey] = int(monkeys[monkey])
     return monkeys
 
 
-def calc_monkey_val(monkey: str, monkeys: dict) -> int:
-    if type(monkeys[monkey]) is int or type(monkeys[monkey]) is sym.Symbol:
+def calc_monkey_val(monkey: str, monkeys: dict) -> int | float | sym.Symbol:
+    if isinstance(monkeys[monkey], (int, sym.Symbol)):
         return monkeys[monkey]
 
     m1, _, m2 = monkeys[monkey].split(" ")
