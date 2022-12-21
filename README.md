@@ -49,7 +49,7 @@ Make sure you have given permission to execute (`chmod +x run_all.sh`).
 | 18  |                                                                 |       |
 | 19  |                                                                 |       |
 | 20  | [Grove Positioning System](https://adventofcode.com/2022/day20) | ⭐⭐    |
-| 21  |                                                                 |       |
+| 21  | [Monkey Math](https://adventofcode.com/2022/day21)              | ⭐⭐    |
 | 22  |                                                                 |       |
 | 23  |                                                                 |       |
 | 24  |                                                                 |       |
