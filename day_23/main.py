@@ -1,5 +1,5 @@
+from collections import Counter, deque
 from dataclasses import dataclass
-from collections import deque, Counter
 
 
 class Dir:
@@ -44,9 +44,12 @@ def part_two(filename: str) -> int:
             (Dir.E, Dir.NE, Dir.SE),
         ]
     )
-    for _ in range(10):
-        play_round(elves, directions_to_consider)
-    return 0
+    elves_moved = True
+    rounds = 0
+    while elves_moved:
+        elves_moved = play_round(elves, directions_to_consider)
+        rounds += 1
+    return rounds
 
 
 def play_round(
@@ -66,7 +69,7 @@ def play_round(
                     elf.y + directions[0][1],
                 )
                 break
-
+    elves_moved = False
     duplicate_cells: set[tuple[int, int]] = {
         item for item, count in Counter(proposals.values()).items() if count > 1
     }
@@ -74,8 +77,10 @@ def play_round(
         if destination not in duplicate_cells:
             elves[destination] = Elf(*destination)
             del elves[origin]
+            elves_moved = True
 
     directions_to_consider.rotate(-1)
+    return elves_moved
 
 
 def are_positions_empty(
@@ -117,7 +122,7 @@ def print_map(elves: dict[tuple[int, int], Elf]):
 
 
 if __name__ == "__main__":
-    input_path = "./day_23/example1.txt"
+    input_path = "./day_23/input.txt"
     print("---Part One---")
     print(part_one(input_path))
 

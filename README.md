@@ -51,7 +51,7 @@ Make sure you have given permission to execute (`chmod +x run_all.sh`).
 | 20  | [Grove Positioning System](https://adventofcode.com/2022/day20) | ⭐⭐  |
 | 21  | [Monkey Math](https://adventofcode.com/2022/day21)              | ⭐⭐  |
 | 22  | [Monkey Map](https://adventofcode.com/2022/day22)               | ⭐    |
-| 23  | [Unstable Diffusion](https://adventofcode.com/2022/day22)       | ⭐    |
+| 23  | [Unstable Diffusion](https://adventofcode.com/2022/day22)       | ⭐⭐  |
 | 24  |                                                                 |       |
 | 25  |                                                                 |       |
 
