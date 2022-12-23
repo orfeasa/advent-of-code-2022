@@ -29,28 +29,28 @@ Make sure you have given permission to execute (`chmod +x run_all.sh`).
 
 | Day | Name                                                            | Stars |
 | --- | --------------------------------------------------------------- | ----- |
-| 01  | [Calorie Counting](https://adventofcode.com/2022/day/1)         | ⭐⭐  |
-| 02  | [Rock Paper Scissors](https://adventofcode.com/2022/day/2)      | ⭐⭐  |
-| 03  | [Rucksack Reorganization](https://adventofcode.com/2022/day/3)  | ⭐⭐  |
-| 04  | [Camp Cleanup](https://adventofcode.com/2022/day4)              | ⭐⭐  |
-| 05  | [Supply Stacks](https://adventofcode.com/2022/day5)             | ⭐⭐  |
-| 06  | [Tuning Trouble](https://adventofcode.com/2022/day6)            | ⭐⭐  |
-| 07  | [No Space Left On Device](https://adventofcode.com/2022/day7)   | ⭐⭐  |
-| 08  | [Treetop Tree House](https://adventofcode.com/2022/day8)        | ⭐⭐  |
-| 09  | [Rope Bridge](https://adventofcode.com/2022/day9)               | ⭐⭐  |
-| 10  | [Cathode-Ray Tube](https://adventofcode.com/2022/day10)         | ⭐⭐  |
-| 11  | [Monkey in the Middle](https://adventofcode.com/2022/day11)     | ⭐⭐  |
-| 12  | [Hill Climbing Algorithm](https://adventofcode.com/2022/day12)  | ⭐⭐  |
-| 13  | [Distress Signal](https://adventofcode.com/2022/day13)          | ⭐⭐  |
-| 14  | [Regolith Reservoir](https://adventofcode.com/2022/day14)       | ⭐⭐  |
+| 01  | [Calorie Counting](https://adventofcode.com/2022/day/1)         | ⭐⭐    |
+| 02  | [Rock Paper Scissors](https://adventofcode.com/2022/day/2)      | ⭐⭐    |
+| 03  | [Rucksack Reorganization](https://adventofcode.com/2022/day/3)  | ⭐⭐    |
+| 04  | [Camp Cleanup](https://adventofcode.com/2022/day4)              | ⭐⭐    |
+| 05  | [Supply Stacks](https://adventofcode.com/2022/day5)             | ⭐⭐    |
+| 06  | [Tuning Trouble](https://adventofcode.com/2022/day6)            | ⭐⭐    |
+| 07  | [No Space Left On Device](https://adventofcode.com/2022/day7)   | ⭐⭐    |
+| 08  | [Treetop Tree House](https://adventofcode.com/2022/day8)        | ⭐⭐    |
+| 09  | [Rope Bridge](https://adventofcode.com/2022/day9)               | ⭐⭐    |
+| 10  | [Cathode-Ray Tube](https://adventofcode.com/2022/day10)         | ⭐⭐    |
+| 11  | [Monkey in the Middle](https://adventofcode.com/2022/day11)     | ⭐⭐    |
+| 12  | [Hill Climbing Algorithm](https://adventofcode.com/2022/day12)  | ⭐⭐    |
+| 13  | [Distress Signal](https://adventofcode.com/2022/day13)          | ⭐⭐    |
+| 14  | [Regolith Reservoir](https://adventofcode.com/2022/day14)       | ⭐⭐    |
 | 15  | [Beacon Exclusion Zone](https://adventofcode.com/2022/day15)    |       |
 | 16  | [Proboscidea Volcanium](https://adventofcode.com/2022/day16)    |       |
 | 17  | [Pyroclastic Flow](https://adventofcode.com/2022/day17)         |       |
 | 18  | [Boiling Boulders](https://adventofcode.com/2022/day18)         |       |
 | 19  | [Not Enough Minerals](https://adventofcode.com/2022/day19)      |       |
-| 20  | [Grove Positioning System](https://adventofcode.com/2022/day20) | ⭐⭐  |
-| 21  | [Monkey Math](https://adventofcode.com/2022/day21)              | ⭐⭐  |
-| 22  |                                                                 |       |
+| 20  | [Grove Positioning System](https://adventofcode.com/2022/day20) | ⭐⭐    |
+| 21  | [Monkey Math](https://adventofcode.com/2022/day21)              | ⭐⭐    |
+| 22  | [Monkey Map](https://adventofcode.com/2022/day22)               | ⭐     |
 | 23  |                                                                 |       |
 | 24  |                                                                 |       |
 | 25  |                                                                 |       |
