@@ -40,9 +40,11 @@ def part_one(filename: str) -> int:
     start, board, path = parse_input(filename)
     current_node = board[start]
     facing = Direction.RIGHT
+    visited = {start: facing}
     for step in path:
         if isinstance(step, int):
             for _ in range(step):
+                visited[(current_node.x, current_node.y)] = facing
                 match facing:
                     case Direction.RIGHT:
                         next_node = current_node.right
@@ -64,13 +66,36 @@ def part_one(filename: str) -> int:
                 case "R":
                     facing = Direction.clockwise(facing)
                 case _:
-                    raise ValueError(f"Invalid rotation: {step}")
-    print(f"{current_node=}, {facing=}")
+                    raise ValueError(f"Invalid rotation: '{step}'")
     return 4 * current_node.x + 1000 * current_node.y + facing.value
 
 
 def part_two(filename: str) -> int:
     return 0
+
+
+def print_map(
+    board: dict[tuple[int, int], Node], visited: dict[tuple[int, int], Direction]
+):
+    x_max = max(x for x, y in board)
+    y_max = max(y for x, y in board)
+    for y in range(1, y_max + 1):
+        for x in range(1, x_max + 1):
+            if (x, y) in visited:
+                match visited[(x, y)]:
+                    case Direction.RIGHT:
+                        print(">", end="")
+                    case Direction.DOWN:
+                        print("v", end="")
+                    case Direction.LEFT:
+                        print("<", end="")
+                    case Direction.UP:
+                        print("^", end="")
+            elif (x, y) in board:
+                print(board[(x, y)].value, end="")
+            else:
+                print(" ", end="")
+        print()
 
 
 def parse_input(
@@ -99,12 +124,14 @@ def parse_input(
         node.up = find_next(board, coord, (0, -1), x_max, y_max)
         node.down = find_next(board, coord, (0, 1), x_max, y_max)
 
-    path = [
-        x
-        for step in re.findall(r"\d+[A-Z]+", path_str)
-        for x in [int(step[:-1]), step[-1]]
-    ]
-
+    path = []
+    for step in re.split(r"(\d+)", path_str.strip()):
+        if not step:
+            continue
+        if step.isdigit():
+            path.append(int(step))
+        else:
+            path.append(step)
     return start, board, path
 
 
