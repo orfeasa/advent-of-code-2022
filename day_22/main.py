@@ -22,31 +22,51 @@ class Node:
 
 
 class Direction(Enum):
-    R = 0
-    D = 1
-    L = 2
-    U = 3
+    RIGHT = 0
+    DOWN = 1
+    LEFT = 2
+    UP = 3
+
+    @classmethod
+    def clockwise(cls, direction: "Direction") -> "Direction":
+        return cls((direction.value + 1) % 4)
+
+    @classmethod
+    def counter_clockwise(cls, direction: "Direction") -> "Direction":
+        return cls((direction.value - 1) % 4)
 
 
 def part_one(filename: str) -> int:
     start, board, path = parse_input(filename)
     current_node = board[start]
-    for steps, dir in path:
-        for _ in range(steps):
-            match dir:
-                case Direction.R:
-                    next_node = current_node.right
-                case Direction.D:
-                    next_node = current_node.down
-                case Direction.L:
-                    next_node = current_node.left
-                case Direction.U:
-                    next_node = current_node.up
-            if next_node.value == "#":
-                break
-            current_node = next_node
-    print(f"{current_node=}")
-    return 0
+    facing = Direction.RIGHT
+    for step in path:
+        if isinstance(step, int):
+            for _ in range(step):
+                match facing:
+                    case Direction.RIGHT:
+                        next_node = current_node.right
+                    case Direction.DOWN:
+                        next_node = current_node.down
+                    case Direction.LEFT:
+                        next_node = current_node.left
+                    case Direction.UP:
+                        next_node = current_node.up
+                    case _:
+                        raise ValueError(f"Invalid direction: {facing}")
+                if next_node.value == "#":
+                    break
+                current_node = next_node
+        else:
+            match step:
+                case "L":
+                    facing = Direction.counter_clockwise(facing)
+                case "R":
+                    facing = Direction.clockwise(facing)
+                case _:
+                    raise ValueError(f"Invalid rotation: {step}")
+    print(f"{current_node=}, {facing=}")
+    return 4 * current_node.x + 1000 * current_node.y + facing.value
 
 
 def part_two(filename: str) -> int:
@@ -55,7 +75,7 @@ def part_two(filename: str) -> int:
 
 def parse_input(
     filename: str,
-) -> tuple[tuple[int, int], dict[tuple[int, int], Node], list[tuple[int, Direction]]]:
+) -> tuple[tuple[int, int], dict[tuple[int, int], Node], list[int | str]]:
     with open(filename, encoding="utf8") as f:
         map_str, path_str = f.read().split("\n\n")
 
@@ -76,15 +96,14 @@ def parse_input(
     for coord, node in board.items():
         node.left = find_next(board, coord, (-1, 0), x_max, y_max)
         node.right = find_next(board, coord, (1, 0), x_max, y_max)
-        node.up = find_next(board, coord, (0, 1), x_max, y_max)
-        node.down = find_next(board, coord, (0, -1), x_max, y_max)
+        node.up = find_next(board, coord, (0, -1), x_max, y_max)
+        node.down = find_next(board, coord, (0, 1), x_max, y_max)
 
-    path_rotations = [
-        (int(step[:-1]), step[-1])
+    path = [
+        x
         for step in re.findall(r"\d+[A-Z]+", path_str)
+        for x in [int(step[:-1]), step[-1]]
     ]
-    # TODO change from rotation to direction
-
 
     return start, board, path
 
@@ -133,7 +152,7 @@ def find_down(board: dict[tuple[int, int], Node], x: int, y: int, x_max, y_max) 
 
 
 if __name__ == "__main__":
-    input_path = "./day_22/example1.txt"
+    input_path = "./day_22/input.txt"
     print("---Part One---")
     print(part_one(input_path))
 
