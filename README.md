@@ -53,7 +53,7 @@ Make sure you have given permission to execute (`chmod +x run_all.sh`).
 | 22  | [Monkey Map](https://adventofcode.com/2022/day22)               | ⭐     |
 | 23  | [Unstable Diffusion](https://adventofcode.com/2022/day23)       | ⭐⭐    |
 | 24  | [Blizzard Basin](https://adventofcode.com/2022/day24)           | ⭐⭐    |
-| 25  | [Full of Hot Air](https://adventofcode.com/2022/day25)          | ⭐     |
+| 25  | [Full of Hot Air](https://adventofcode.com/2022/day25)          | ⭐⭐    |
 
 ## New Day
 
