@@ -1,10 +1,10 @@
 def part_one(filename: str) -> int:
-    blizzards_start, start, end, x_max, y_max = parse_input(filename)
+    start, end, blizzards_start, x_max, y_max = parse_input(filename)
     return steps_to_end(start, end, blizzards_start, x_max, y_max)
 
 
 def part_two(filename: str) -> int:
-    blizzards_start, start, end, x_max, y_max = parse_input(filename)
+    start, end, blizzards_start, x_max, y_max = parse_input(filename)
     return steps_to_end(
         start,
         end,
@@ -39,13 +39,12 @@ def steps_to_end(
             x, y = curr_pos.pop()
             if (x, y) == end:
                 return t
-            for x1, y1 in [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]:
+            for x1, y1 in [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1), (x, y)]:
                 if (
                     1 <= x1 <= x_max and 1 <= y1 <= y_max and (x1, y1) not in blizzards
-                ) or (x1, y1) in {start, end}:
+                ) or (x1, y1) in {start, end} - blizzards:
                     next_pos.add((x1, y1))
-            next_pos.add((x, y))
-        curr_pos = next_pos - blizzards
+        curr_pos = next_pos
         next_pos = set()
         t += 1
 
@@ -71,36 +70,9 @@ def get_blizzard_at_time(
     return blizzards
 
 
-def print_map(
-    wind_locations: set[tuple[int, int]],
-    start: tuple[int, int],
-    end: tuple[int, int],
-    x_max: int,
-    y_max: int,
-    current: set[tuple[int, int]] | None = None,
-):
-    for y in range(y_max + 2):
-        for x in range(x_max + 2):
-            match (x, y):
-                case (x, y) if current and (x, y) in current:
-                    print("o", end="")
-                case (x, y) if (x, y) == start or (x, y) == end:
-                    print(".", end="")
-                case (_, 0) | (0, _):
-                    print("#", end="")
-                case (x, y) if x == x_max + 1 or y == y_max + 1:
-                    print("#", end="")
-                case (x, y) if (x, y) in wind_locations:
-                    print("X", end="")
-                case _:
-                    print(".", end="")
-        print()
-    print()
-
-
 def parse_input(
     filename: str,
-) -> tuple[dict[tuple[int, int], str], tuple[int, int], tuple[int, int], int, int]:
+) -> tuple[tuple[int, int], tuple[int, int], dict[tuple[int, int], str], int, int]:
     with open(filename, encoding="utf8") as f:
         valley_map = [line.strip() for line in f.readlines()]
 
@@ -113,7 +85,7 @@ def parse_input(
     end = (valley_map[-1].find("."), len(valley_map) - 1)
     x_max = len(valley_map[0]) - 2
     y_max = len(valley_map) - 2
-    return winds, start, end, x_max, y_max
+    return start, end, winds, x_max, y_max
 
 
 if __name__ == "__main__":
