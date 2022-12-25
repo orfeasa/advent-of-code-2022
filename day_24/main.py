@@ -27,7 +27,8 @@ def parse_input(filename: str) -> list:
     end = (valley_map[-1].find("."), len(valley_map) - 1)
 
 
-if __name__ == "__main__":
+if __name__ == "__ma5
+n__":
     input_path = "./day_24/example2.txt"
     print("---Part One---")
     print(part_one(input_path))
